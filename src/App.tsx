@@ -2,14 +2,13 @@ import React, { useState, FC, useEffect} from "react";
 // import logo from './logo.svg';
 import "./App.css";
 import users from './stores/menu-store';
-import { Users } from './stores/menu-store';
+import {User} from './stores/menu-store';
 import {observer} from 'mobx-react-lite';
 // import { userInfo } from 'os';
 // import { stringify } from 'querystring';
 
-const AddUser: FC<{arr: Users['arr']}> = ({arr}) => {
+const AddUser: FC<{arr: User[]}> = ({arr}) => {
   const [user, stateUser] = useState({id: arr.length+1, name: '', surname: '', age: 0});
-  //console.log(arr.length);
   useEffect(() => {
     stateUser({id: arr.length+1, name: '', surname: '', age: 0})
   }, [arr])
@@ -29,7 +28,7 @@ const AddUser: FC<{arr: Users['arr']}> = ({arr}) => {
   )
 }
 
-const EditUser: FC<{currentUser: Users['currentEditUser']}> = 
+const EditUser: FC<{currentUser: User}> = 
 ({currentUser}) => {
   const [user, setUser] = useState(currentUser);
   useEffect(()=> {

@@ -4,7 +4,7 @@ import { setServers } from "dns";
 // import { stringify } from 'querystring';
 import {observable} from 'mobx';  
 
-interface User {
+export interface User {
     id: number;
     name: string;
     surname: string;
@@ -39,4 +39,3 @@ class Users {
 
 const users = new Users();
 export default users;
-export {Users}
