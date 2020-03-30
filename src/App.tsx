@@ -48,10 +48,10 @@ const App = observer(() => {
         <h2>AddUser</h2>
         <AddEditUser edit={false} arr={users.arr} currentUser={users.currentUser}/>
       </div>
-      <div>
+      {users.edit ? (<div>
         <h2>Edit user</h2>
         <AddEditUser edit={true} arr={users.arr} currentUser={users.currentUser}/>
-      </div>
+      </div>) : <></>}
       <div>
         <h2>View Users</h2>
         {users1}
