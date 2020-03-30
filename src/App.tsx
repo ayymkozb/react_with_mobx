@@ -20,7 +20,8 @@ const AddEditUser: FC<{edit: boolean, arr: User[], currentUser: User}> =
   }
   function handleInput() {
     edit ? users.editUser(user) : users.addUser(user);
-    users.currentUser = {id: users.arr.length+1, name: '', surname: '', age: 0};
+    currentUser = {id: users.arr.length+1, name: '', surname: '', age: 0};
+    setUser(currentUser);
   }
   return(
     <>
@@ -46,7 +47,7 @@ const App = observer(() => {
     <>
       <div>
         <h2>AddUser</h2>
-        <AddEditUser edit={false} arr={users.arr} currentUser={users.currentUser}/>
+        <AddEditUser edit={false} arr={users.arr} currentUser={users.currentUser1}/>
       </div>
       {users.edit ? (<div>
         <h2>Edit user</h2>
