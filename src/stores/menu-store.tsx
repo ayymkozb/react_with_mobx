@@ -16,12 +16,12 @@ class Users {
             {id: 2, name: 'Pasha', surname: 'Sukhov',  age: 16}
         ];
     @observable edit = false;
-    @observable currentUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
-    @observable currentUser1 = {id: this.arr.length+1, name: '', surname: '', age: 0};
+    @observable currentEditUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
+    @observable currentAddUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
 
     currentEditField(user: User) {
         this.edit = true; 
-        this.currentUser = user;
+        this.currentEditUser = user;
     }
     deleteUser(id: number) {
         this.edit = false;

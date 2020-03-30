@@ -8,8 +8,8 @@ import {observer} from 'mobx-react-lite';
 // import { stringify } from 'querystring';
 
 
-const AddEditUser: FC<{edit: boolean, arr: User[], currentUser: User}> = 
-({edit, arr, currentUser}) => {
+const AddEditUser: FC<{edit: boolean, currentUser: User}> = 
+({edit, currentUser}) => {
   const [user, setUser] = useState(currentUser);
   useEffect(()=> {
     setUser(currentUser);
@@ -28,8 +28,7 @@ const AddEditUser: FC<{edit: boolean, arr: User[], currentUser: User}> =
       Name:<input value={user.name} name="name" onChange={inputChange}/>
       Surname:<input value={user.surname} name="surname" onChange={inputChange}/>
       Age:<input value={user.age} name="age" onChange={inputChange}/>
-      {edit ? (<button onClick={handleInput}>Edit User</button>) :
-      (<button onClick={handleInput}>Add User</button>)} 
+      <button onClick={handleInput}>{edit ? 'Edit User' : 'AddUser'}</button>
     </>
   )
 }
@@ -47,11 +46,11 @@ const App = observer(() => {
     <>
       <div>
         <h2>AddUser</h2>
-        <AddEditUser edit={false} arr={users.arr} currentUser={users.currentUser1}/>
+        <AddEditUser edit={false} currentUser={users.currentAddUser}/>
       </div>
       {users.edit ? (<div>
         <h2>Edit user</h2>
-        <AddEditUser edit={true} arr={users.arr} currentUser={users.currentUser}/>
+        <AddEditUser edit={true} currentUser={users.currentEditUser}/>
       </div>) : <></>}
       <div>
         <h2>View Users</h2>
