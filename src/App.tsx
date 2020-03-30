@@ -8,22 +8,23 @@ import {observer} from 'mobx-react-lite';
 // import { stringify } from 'querystring';
 
 const AddUser: FC<{arr: Users['arr']}> = ({arr}) => {
-  const [user, stateUser] = useState({id: users.arr.length+1, name: '', surname: '', age: 0});
+  const [user, stateUser] = useState({id: arr.length+1, name: '', surname: '', age: 0});
+  //console.log(arr.length);
   useEffect(() => {
-    stateUser({id: users.arr.length+1, name: '', surname: '', age: 0})
+    stateUser({id: arr.length+1, name: '', surname: '', age: 0})
   }, [arr])
   function inputChange(e: any) {
     const {name, value} = e.target;
     stateUser({...user, [name]: value});
   }
-  // function handleInput() {
-  //   users.addUser(user);
-  // }
+  function handleInput() {
+    users.addUser(user);
+  }
   return (<>
     Name:<input value={user.name} name="name" onChange={inputChange}/>
     Surname:<input value={user.surname} name="surname" onChange={inputChange}/>
     Age:<input value={user.age} name="age" onChange={inputChange}/>
-    <button onClick={()=>users.addUser(user)}>Add User</button></>
+    <button onClick={handleInput}>Add User</button></>
   )
 }
 
