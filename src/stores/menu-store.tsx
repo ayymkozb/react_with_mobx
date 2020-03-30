@@ -2,7 +2,7 @@
 import { setServers } from "dns";
 // import { userInfo } from 'os';
 // import { stringify } from 'querystring';
-import {observable} from 'mobx';  
+import {observable, computed} from 'mobx';  
 
 export interface User {
     id: number;
@@ -16,7 +16,7 @@ class Users {
             {id: 2, name: 'Pasha', surname: 'Sukhov',  age: 16}
         ];
     @observable edit = false;
-    @observable currentEditUser = {id: Math.floor(Math.random()*100), name: '', surname: '', age: 0};
+    @observable currentEditUser = {id: 0, name: '', surname: '', age: 0};
     @observable currentAddUser = {id: Math.floor(Math.random()*100), name: '', surname: '', age: 0};
 
     currentEditField(user: User) {
@@ -26,7 +26,6 @@ class Users {
     deleteUser(id: number) {
         this.edit = false;
         this.arr = this.arr.filter(el=> el.id !== id);
-        this.currentAddUser = {id: Math.floor(Math.random()*100), name: '', surname: '', age: 0};
     }
     editUser(user: User) {  
         this.arr = this.arr.map((el => el.id===user.id ? el=user : el));
