@@ -16,8 +16,8 @@ class Users {
             {id: 2, name: 'Pasha', surname: 'Sukhov',  age: 16}
         ];
     @observable edit = false;
-    @observable currentEditUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
-    @observable currentAddUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
+    @observable currentEditUser = {id: Math.floor(Math.random()*100), name: '', surname: '', age: 0};
+    @observable currentAddUser = {id: Math.floor(Math.random()*100), name: '', surname: '', age: 0};
 
     currentEditField(user: User) {
         this.edit = true; 
@@ -26,8 +26,7 @@ class Users {
     deleteUser(id: number) {
         this.edit = false;
         this.arr = this.arr.filter(el=> el.id !== id);
-        this.arr = this.arr.map( (el, index) => {el.id = index+1; return el});
-        this.currentAddUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
+        this.currentAddUser = {id: Math.floor(Math.random()*100), name: '', surname: '', age: 0};
     }
     editUser(user: User) {  
         this.arr = this.arr.map((el => el.id===user.id ? el=user : el));
