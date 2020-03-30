@@ -22,3 +22,7 @@ code {
   margin: 20px;
   width: 80px;
 }
+
+.col:first-child {
+  width: 150px;
+}

@@ -20,7 +20,7 @@ const AddEditUser: FC<{edit: boolean, currentUser: User}> =
   }
   function handleInput() {
     edit ? users.editUser(user) : users.addUser(user);
-    currentUser = {id: Math.floor(Math.random()*100), name: '', surname: '', age: 0};
+    currentUser = {id: Math.floor(Math.random()), name: '', surname: '', age: 0};
     setUser(currentUser);
   }
   return(
