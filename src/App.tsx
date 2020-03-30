@@ -32,16 +32,19 @@ const AddEditUser: FC<{edit: boolean, currentUser: User}> =
     </>
   )
 }
-
+const ViewUsers: FC<{user: User}> = ({user}) => {
+  return (<>
+    <div className="row">
+    <div className="col">{user.id}</div>
+    <div className="col">{user.name}</div>
+    <div className="col">{user.surname}</div>
+    <div className="col">{user.age}</div>
+    <button onClick={()=>users.deleteUser(user.id)}>Delete</button>
+    <button onClick={()=> users.currentEditField(user)}>Edit</button>
+  </div>
+  </>)
+}
 const App = observer(() => {
-  let users1 = users.arr.map((el: any)=><div className="row">
-    <div className="col">{el.id}</div>
-    <div className="col">{el.name}</div>
-    <div className="col">{el.surname}</div>
-    <div className="col">{el.age}</div>
-    <button onClick={()=>users.deleteUser(el.id)}>Delete</button>
-    <button onClick={()=> users.currentEditField(el)}>Edit</button>
-  </div>)
   return (
     <>
       <div>
@@ -54,7 +57,7 @@ const App = observer(() => {
       </div>) : <></>}
       <div>
         <h2>View Users</h2>
-        {users1}
+        {users.arr.map(user => <ViewUsers user={user}/>)}
       </div>
     </>)
 })
