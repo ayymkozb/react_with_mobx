@@ -27,6 +27,7 @@ class Users {
         this.edit = false;
         this.arr = this.arr.filter(el=> el.id !== id);
         this.arr = this.arr.map( (el, index) => {el.id = index+1; return el});
+        this.currentAddUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
     }
     editUser(user: User) {  
         this.arr = this.arr.map((el => el.id===user.id ? el=user : el));
