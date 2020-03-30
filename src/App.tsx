@@ -19,6 +19,7 @@ const AddUser: FC<{arr: Users['arr']}> = ({arr}) => {
   }
   function handleInput() {
     users.addUser(user);
+    stateUser({id: arr.length+1, name: '', surname: '', age: 0});
   }
   return (<>
     Name:<input value={user.name} name="name" onChange={inputChange}/>
