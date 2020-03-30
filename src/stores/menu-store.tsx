@@ -16,7 +16,8 @@ class Users {
             {id: 2, name: 'Pasha', surname: 'Sukhov',  age: 16}
         ];
     @observable edit = false;
-    @observable currentUser = {id: this.arr.length+1, name: '', surname: '', age: 0}
+    @observable currentUser = {id: this.arr.length+1, name: '', surname: '', age: 0};
+    @observable currentUser1 = {id: this.arr.length+1, name: '', surname: '', age: 0};
 
     currentEditField(user: User) {
         this.edit = true; 
