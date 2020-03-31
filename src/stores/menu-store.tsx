@@ -15,6 +15,7 @@ class Users {
   @observable userToEdit?: User;
 
   deleteUser(user: User) {
+    this.userToEdit = undefined;
     this.arr.remove(user);
   }
 
