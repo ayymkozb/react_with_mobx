@@ -47,7 +47,7 @@ const AddEditUser: FC<Partial<User> & { isEdit?: boolean; saveUser(user: User): 
       <Observer>{() => <input value={localStore.surname} name="surname" onChange={inputChange} />}</Observer>
       Age:
       <Observer>{() => <input value={localStore.age} name="age" onChange={inputChange} />}</Observer>
-      <Observer>{() => <button onClick={handleClick}>{isEdit ? "Edit User" : "AddUser"}</button>}</Observer>
+      <button onClick={handleClick}>{isEdit ? "Edit User" : "AddUser"}</button>
     </>
   );
 };
@@ -60,7 +60,7 @@ const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void }> = ({ user, 
         <div className="col">{user.name}</div>
         <div className="col">{user.surname}</div>
         <div className="col">{user.age}</div>
-        <button onClick={() => users.deleteUser(user.id)}>Delete</button>
+        <button onClick={() => users.deleteUser(user)}>Delete</button>
         <button
           onClick={() => {
             setUserToEdit(user);
