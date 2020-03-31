@@ -29,12 +29,10 @@ class Users {
       userToEdit.name = user.name;
       userToEdit.surname = user.surname;
     }
-
     this.userToEdit = undefined;
   }
 
   addUser(user: User) {
-    if (!user.name || !user.surname) return;
     this.arr.push(user);
   }
 }

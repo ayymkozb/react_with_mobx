@@ -52,7 +52,7 @@ const AddEditUser: FC<Partial<User> & { isEdit?: boolean; saveUser(user: User): 
   );
 };
 
-const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void }> = ({ user, setUserToEdit }) => {
+const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void; deleteUser(user: User): void }> = observer(({ user, setUserToEdit, deleteUser }) => {
   return (
     <>
       <div className="row">
@@ -60,23 +60,30 @@ const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void }> = ({ user, 
         <div className="col">{user.name}</div>
         <div className="col">{user.surname}</div>
         <div className="col">{user.age}</div>
-        <button onClick={() => users.deleteUser(user)}>Delete</button>
-        <button
-          onClick={() => {
-            setUserToEdit(user);
-          }}
-        >
-          Edit
-        </button>
+        <button onClick={()=>deleteUser(user)}>Delete</button>
+        <button onClick={()=>setUserToEdit(user)}>Edit</button>
       </div>
     </>
   );
-};
+});
 
-const App = observer(() => {
-  const handleEdit = useCallback((user: User) => {
+const UsersList: FC<{usersList: User[]}>= observer(({usersList}) =>{
+  const handleDelete = useCallback((user)=>{
+    users.deleteUser(user);
+  },[])
+  const handleEdit = useCallback((user) => {
     users.setUserToEdit(user);
   }, []);
+  return (<>
+    <h2>View Users</h2>
+    {usersList.map(user => (
+      <ViewUsers user={user} setUserToEdit={handleEdit} deleteUser={handleDelete} />
+        ))}
+    </>
+  )
+})
+
+const App = observer(() => {
 
   return (
     <>
@@ -98,10 +105,7 @@ const App = observer(() => {
         </div>
       ) : null}
       <div>
-        <h2>View Users</h2>
-        {users.arr.map(user => (
-          <ViewUsers setUserToEdit={handleEdit} user={user} />
-        ))}
+        <UsersList usersList={users.arr}/>
       </div>
     </>
   );
