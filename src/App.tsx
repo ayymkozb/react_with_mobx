@@ -52,7 +52,8 @@ const AddEditUser: FC<Partial<User> & { isEdit?: boolean; saveUser(user: User): 
   );
 };
 
-const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void; deleteUser(user: User): void }> = observer(({ user, setUserToEdit, deleteUser }) => {
+const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void; deleteUser(user: User): void }> = 
+observer(({ user, setUserToEdit, deleteUser }) => {
   return (
     <>
       <div className="row">
@@ -78,13 +79,13 @@ const UsersList: FC<{usersList: User[]}>= observer(({usersList}) =>{
     <h2>View Users</h2>
     {usersList.map(user => (
       <ViewUsers user={user} setUserToEdit={handleEdit} deleteUser={handleDelete} />
-        ))}
+        ))
+    }
     </>
   )
 })
 
 const App = observer(() => {
-
   return (
     <>
       <div>
