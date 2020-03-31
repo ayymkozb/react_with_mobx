@@ -1,40 +1,42 @@
-// import logo from './logo.svg';
-import { setServers } from "dns";
-// import { userInfo } from 'os';
-// import { stringify } from 'querystring';
-import {observable, computed} from 'mobx';  
+import { observable } from "mobx";
 
 export interface User {
-    id: number;
-    name: string;
-    surname: string;
-    age: number;
-  }
+  id: number;
+  name: string;
+  surname: string;
+  age: number;
+}
 class Users {
-    @observable arr = [ 
-            {id: 1, name: 'Tanya', surname: 'Baikova', age: 18}, 
-            {id: 2, name: 'Pasha', surname: 'Sukhov',  age: 16}
-        ];
-    @observable edit = false;
-    @observable currentEditUser = {id: 0, name: '', surname: '', age: 0};
-    @observable currentAddUser = {id: Math.random(), name: '', surname: '', age: 0};
+  readonly arr = observable<User>([
+    { id: 1, name: "Tanya", surname: "Baikova", age: 18 },
+    { id: 2, name: "Pasha", surname: "Sukhov", age: 16 }
+  ]);
 
-    currentEditField(user: User) {
-        this.edit = true; 
-        this.currentEditUser = user;
+  @observable userToEdit?: User;
+
+  deleteUser(user: User) {
+    this.arr.remove(user);
+  }
+
+  setUserToEdit(user: User) {
+    this.userToEdit = user;
+  }
+
+  editUser(user: User) {
+    const userToEdit = this.arr.find(item => item.id === user.id);
+    if (userToEdit) {
+      userToEdit.age = user.age;
+      userToEdit.name = user.name;
+      userToEdit.surname = user.surname;
     }
-    deleteUser(id: number) {
-        this.edit = false;
-        this.arr = this.arr.filter(el=> el.id !== id);
-    }
-    editUser(user: User) {  
-        this.arr = this.arr.map((el => el.id===user.id ? el=user : el));
-    }
-    addUser(user: User) {   
-        if (!user.name || !user.surname) 
-            return;
-        this.arr.push(user);
-    };
+
+    this.userToEdit = undefined;
+  }
+
+  addUser(user: User) {
+    if (!user.name || !user.surname) return;
+    this.arr.push(user);
+  }
 }
 
 const users = new Users();
