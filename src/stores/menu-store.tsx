@@ -15,6 +15,7 @@ class Users {
   @observable userToEdit?: User;
 
   deleteUser(user: User) {
+    this.userToEdit = undefined;
     this.arr.remove(user);
   }
 
@@ -29,12 +30,10 @@ class Users {
       userToEdit.name = user.name;
       userToEdit.surname = user.surname;
     }
-
     this.userToEdit = undefined;
   }
 
   addUser(user: User) {
-    if (!user.name || !user.surname) return;
     this.arr.push(user);
   }
 }
