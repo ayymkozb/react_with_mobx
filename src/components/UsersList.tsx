@@ -2,7 +2,7 @@ import React, { FC} from "react";
 import "../App.css";
 import { User } from "../stores/menu-store";
 import { observer} from "mobx-react-lite";
-import ViewUsers from "./ViewUsers"
+import ViewUsers from "./UsersTable"
 
 const UsersList: FC<{ usersList: User[]; setUserToEdit(user: User): void; deleteUser(user: User): void }> = observer(
     ({ usersList, deleteUser, setUserToEdit }) => {
