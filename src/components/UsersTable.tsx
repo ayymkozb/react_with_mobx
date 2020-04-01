@@ -1,9 +1,9 @@
 import React, { FC, useCallback } from "react";
-import "../App.css";
+import "./App/App.css";
 import { User } from "../stores/menu-store";
 import { observer } from "mobx-react-lite";
 
-const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void; deleteUser(user: User): void }> = observer(
+const UsersTable: FC<{ user: User; setUserToEdit(user: User): void; deleteUser(user: User): void }> = observer(
     ({ user, setUserToEdit, deleteUser }) => {
       const handleDelete = useCallback(() => {
         deleteUser(user);
@@ -27,4 +27,4 @@ const ViewUsers: FC<{ user: User; setUserToEdit(user: User): void; deleteUser(us
       );
     }
   );
-  export default ViewUsers;
+  export default UsersTable;

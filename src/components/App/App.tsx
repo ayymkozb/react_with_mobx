@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
-import "../App.css";
-import users from "../stores/menu-store";
-import { User } from "../stores/menu-store";
+import "./App.css";
+import users from "../../stores/menu-store";
+import { User } from "../../stores/menu-store";
 import { observer} from "mobx-react-lite";
-import AddEditUser from "./AddEditUser"
-import UsersList from "./UsersList"
+import AddEditUser from "../AddEditUser"
+import UsersList from "../UsersList"
 
 const App = observer(() => {
   const addUser = useCallback((user: User) => {

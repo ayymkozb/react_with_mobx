@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from "react";
-import "../App.css";
+import "./App/App.css";
 import {useAsObservableSource, Observer } from "mobx-react-lite";
 import  {User}  from "../stores/menu-store";
 
