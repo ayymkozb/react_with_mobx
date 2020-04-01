@@ -12,8 +12,7 @@ class Users {
     { id: 1, name: "Tanya", surname: "Baikova", age: 18 },
     { id: 2, name: "Pasha", surname: "Sukhov", age: 16 }
   ]);
-
-  @observable userToEdit: { user?: User } = {
+   @observable readonly userToEdit: { user?: User } = {
     user: undefined
   };
 
