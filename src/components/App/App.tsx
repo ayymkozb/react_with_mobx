@@ -2,11 +2,12 @@ import React, { useCallback } from "react";
 import "./App.css";
 import users from "../../stores/menu-store";
 import { User } from "../../stores/menu-store";
-import { observer} from "mobx-react-lite";
-import AddEditUser from "../AddEditUser"
-import UsersList from "../UsersList"
+import { observer } from "mobx-react-lite";
+import AddEditUser from "../AddEditUser";
+import UsersList from "../UsersList";
+import EditForm from "../EditForm";
 
-const App = observer(() => {
+const App = () => {
   const addUser = useCallback((user: User) => {
     users.addUser(user);
   }, []);
@@ -32,14 +33,7 @@ const App = observer(() => {
       {users.userToEdit ? (
         <div>
           <h2>Edit user</h2>
-          <AddEditUser
-            isEdit
-            saveUser={editUser}
-            name={users.userToEdit.name}
-            surname={users.userToEdit.surname}
-            age={users.userToEdit.age}
-            id={users.userToEdit.id}
-          />
+          <EditForm editUser={editUser} userToEdit={users.userToEdit} />
         </div>
       ) : null}
       <div>
@@ -47,6 +41,6 @@ const App = observer(() => {
       </div>
     </>
   );
-});
+};
 
 export default App;

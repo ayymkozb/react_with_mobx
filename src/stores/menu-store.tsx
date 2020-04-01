@@ -1,4 +1,5 @@
-import { observable } from "mobx";
+import { observable, action } from "mobx";
+import { access } from "fs";
 
 export interface User {
   id: number;
@@ -11,29 +12,30 @@ class Users {
     { id: 1, name: "Tanya", surname: "Baikova", age: 18 },
     { id: 2, name: "Pasha", surname: "Sukhov", age: 16 }
   ]);
+   @observable readonly userToEdit: { user?: User } = {
+    user: undefined
+  };
 
-  @observable userToEdit?: User;
-
-  deleteUser(user: User) {
-    this.userToEdit = undefined;
+  @action deleteUser(user: User) {
+    this.userToEdit.user = undefined;
     this.arr.remove(user);
   }
 
-  setUserToEdit(user: User) {
-    this.userToEdit = user;
+  @action setUserToEdit(user: User) {
+    this.userToEdit.user = user;
   }
 
-  editUser(user: User) {
+  @action editUser(user: User) {
     const userToEdit = this.arr.find(item => item.id === user.id);
     if (userToEdit) {
       userToEdit.age = user.age;
       userToEdit.name = user.name;
       userToEdit.surname = user.surname;
     }
-    this.userToEdit = undefined;
+    this.userToEdit.user = undefined;
   }
 
-  addUser(user: User) {
+  @action addUser(user: User) {
     this.arr.push(user);
   }
 }
